@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ContactItem from './ContactItem';
-import { ListItem } from '@mui/material';
 import { List, Item} from './ContactList.styled';
 
 const ContactList = ({ contacts, onDelete }) => {
