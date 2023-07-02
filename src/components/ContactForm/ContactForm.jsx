@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Form, SubmitBtn } from './ContactForm.styled';
+import { FormControl, Input, InputLabel } from '@mui/material';
 
 export default class ContactForm extends Component {
     static propTypes = {
@@ -28,11 +30,14 @@ export default class ContactForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name
-          <input
+      <Form onSubmit={this.handleSubmit}>
+        <FormControl>
+          <InputLabel htmlFor="name">
+            Name
+          </InputLabel>
+          <Input size="small"
             type="text"
+            id="name"
             name="name"
             value={this.state.name}
             pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -40,10 +45,11 @@ export default class ContactForm extends Component {
             required
             onChange={this.handleInput}
           />
-        </label>
-        <label>
-          Number
-          <input
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="number">Number</InputLabel>
+          <Input
+            id="number"
             type="tel"
             name="number"
             value={this.state.number}
@@ -52,9 +58,9 @@ export default class ContactForm extends Component {
             required
             onChange={this.handleInput}
           />
-        </label>
-        <button type="submit">Add contact</button>
-      </form>
+        </FormControl>
+        <SubmitBtn type="submit">Add contact</SubmitBtn>
+      </Form>
     );
   }
 }

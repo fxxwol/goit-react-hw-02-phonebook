@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
-import Filter from './Filter';
+import Filter from './Filter/Filter';
 import ContactList from './Contacts/ContactList';
+import { Container } from '@mui/material';
 
 export class App extends Component {
   state = {
@@ -14,11 +15,11 @@ export class App extends Component {
     this.setState({ filter: e.target.value });
   };
 
-  deleteContact = (id) => { 
-    this.setState(prev => ({ 
-      contacts: prev.contacts.filter(contact => contact.id !== id)
-    }))
-  }
+  deleteContact = id => {
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(contact => contact.id !== id),
+    }));
+  };
 
   addContact = ({ name, number }) => {
     if (this.state.contacts.find(contact => contact.name === name)) {
@@ -43,14 +44,16 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <h2>Phonebook</h2>
         <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
-        <p>Find contacts by name:</p>
         <Filter value={this.state.filter} onChange={this.changeFilter} />
-        <ContactList contacts={this.filterContacts()} onDelete={ this.deleteContact} />
-      </div>
+        <ContactList
+          contacts={this.filterContacts()}
+          onDelete={this.deleteContact}
+        />
+      </Container>
     );
   }
 }
